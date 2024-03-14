@@ -6,7 +6,6 @@ import (
 	"gorm.io/gorm"
 	"guizizhan/model"
 	response "guizizhan/response/note"
-	"guizizhan/service/tool"
 	"strconv"
 )
 
@@ -23,7 +22,8 @@ import (
 // @Router /api/getactivity/allpostnote [get]
 func GetAllPostNote(c *gin.Context, db *gorm.DB) {
 	var msg string
-	_, yn := tool.GetStudentID(c)
+	//_, yn := tool.GetStudentID(c)
+
 	wherestring, _ := c.GetQuery("where")
 	whereint, _ := strconv.Atoi(wherestring)
 	var posts []model.Post
@@ -33,9 +33,7 @@ func GetAllPostNote(c *gin.Context, db *gorm.DB) {
 	} else {
 		msg = "成功获取到所有帖子"
 	}
-	if yn {
-		response.Getallnotes_ok(c, posts, msg)
-	} else {
-		response.Getallnotes_fail(c)
-	}
+
+	response.Getallnotes_ok(c, posts, msg)
+
 }

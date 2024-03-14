@@ -6,7 +6,6 @@ import (
 	"gorm.io/gorm"
 	"guizizhan/model"
 	response "guizizhan/response/treasurehunting"
-	"guizizhan/service/tool"
 	"strconv"
 )
 
@@ -23,7 +22,6 @@ import (
 // @Router /api/getactivity/alltreasurehunting [get]
 func GetAllTreasureHuntings(c *gin.Context, db *gorm.DB) {
 	var msg string
-	_, yn := tool.GetStudentID(c)
 	wherestring, _ := c.GetQuery("where")
 	whereint, _ := strconv.Atoi(wherestring)
 	var TreasureHuntings []model.Treasurehunting
@@ -33,9 +31,7 @@ func GetAllTreasureHuntings(c *gin.Context, db *gorm.DB) {
 	} else {
 		msg = "找到了"
 	}
-	if yn {
-		response.GetTreasurehuntings_ok(c, TreasureHuntings, msg)
-	} else {
-		response.GetTreasurehuntings_fail(c)
-	}
+
+	response.GetTreasurehuntings_ok(c, TreasureHuntings, msg)
+
 }

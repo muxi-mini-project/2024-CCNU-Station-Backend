@@ -93,7 +93,7 @@ func RouterInit(db *gorm.DB) *gin.Engine {
 	{
 		// @Summary 获取所有记录
 		// @Description 获取所有发布的记录的详细信息。
-		GetActivityGroup.GET("/allpostnote", token.JWTAuthMiddleware(), func(c *gin.Context) {
+		GetActivityGroup.GET("/allpostnote", func(c *gin.Context) {
 			note.GetAllPostNote(c, db)
 		})
 
@@ -101,7 +101,7 @@ func RouterInit(db *gorm.DB) *gin.Engine {
 		//	note.GetThePostNote(c, db)
 		//})
 
-		GetActivityGroup.GET("/alltreasurehunting", token.JWTAuthMiddleware(), func(c *gin.Context) {
+		GetActivityGroup.GET("/alltreasurehunting", func(c *gin.Context) {
 			treasurehunting.GetAllTreasureHuntings(c, db)
 		})
 
@@ -109,7 +109,7 @@ func RouterInit(db *gorm.DB) *gin.Engine {
 		//	treasurehunting.GetTheTreasureHunting(c, db)
 		//})
 
-		GetActivityGroup.GET("/allrecruit", token.JWTAuthMiddleware(), func(c *gin.Context) {
+		GetActivityGroup.GET("/allrecruit", func(c *gin.Context) {
 			recruit.GetAllRecruits(c, db)
 		})
 

@@ -18,7 +18,9 @@ import (
 // @Accept json
 // @Produce json
 // @Param where query string true "发布地点"
-// @Param key1 query string true "图片1的key"
+// @Param key1 query string false "图片1的key"
+// @Param text formData string true "帖子的内容"
+// @Param title formData string true "帖子的标题"
 // @Security Bearer
 // @Api(tags="发布")
 // @Success 200 {object} response.Postnote_resp
@@ -30,6 +32,7 @@ func PostNote(c *gin.Context, db *gorm.DB) {
 	posterid := stuid.(string)
 	student, _ := model.FindStudfromID(posterid, db)
 	text := c.PostForm("text")
+	title := c.PostForm("title")
 	postid := generateID.GeneratePostID(db)
 	wherestring, _ := c.GetQuery("where")
 	whereint, _ := strconv.Atoi(wherestring)
@@ -44,6 +47,7 @@ func PostNote(c *gin.Context, db *gorm.DB) {
 		Time:         time.Now(),
 		HeadImage:    student.HeadImage,
 		Image1:       url1,
+		Title:        title,
 	}
 
 	db.Create(&post)

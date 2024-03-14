@@ -20,7 +20,7 @@ import (
 // @Produce json
 // @Param image query string true "图片文件的Key"
 // @Param content formData string true "活动内容"
-// @Param treasurelocation query string true "寻宝地点"
+// @Param where query string true "寻宝地点"
 // @Param thing formData string true "寻找的物品"
 // @Security Bearer
 // @Api(tags="发布")

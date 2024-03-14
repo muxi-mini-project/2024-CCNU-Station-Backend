@@ -6,7 +6,6 @@ import (
 	"gorm.io/gorm"
 	"guizizhan/model"
 	response "guizizhan/response/recruit"
-	"guizizhan/service/tool"
 	"strconv"
 )
 
@@ -23,7 +22,7 @@ import (
 // @Router /api/getactivity/allrecruit [get]
 func GetAllRecruits(c *gin.Context, db *gorm.DB) {
 	var msg string
-	_, yn := tool.GetStudentID(c)
+	//_, yn := tool.GetStudentID(c)
 
 	wherestring, _ := c.GetQuery("where")
 	whereint, _ := strconv.Atoi(wherestring)
@@ -35,9 +34,6 @@ func GetAllRecruits(c *gin.Context, db *gorm.DB) {
 	} else {
 		msg = "找到了"
 	}
-	if yn {
-		response.GetRecruits_ok(c, recruits, msg)
-	} else {
-		response.GetRecruits_fail(c)
-	}
+
+	response.GetRecruits_ok(c, recruits, msg)
 }
