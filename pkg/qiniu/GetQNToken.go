@@ -39,6 +39,6 @@ func GetQNToken() string {
 	return QNToken
 }
 func GenerateURL(key string) string {
-	URL := fmt.Sprintf("%s/%s", Key.Domain, key)
+	URL := fmt.Sprintf("http://%s/%s", Key.Domain, key)
 	return URL
 }
